@@ -109,7 +109,7 @@ jQuery(document).ready(function() {
         // NGワードが含まれているかをチェック
         for (var i = 0; i < ngWords.length; i++) {
             if (inputContent.includes(ngWords[i])) {
-                alert('NGワードが含まれています。送信できません。');
+                alert('送信できません。'); // NGワードがあったときに表示するメッセージ
                 e.preventDefault(); // 送信をブロック
                 return false; // 処理を中断
             }
