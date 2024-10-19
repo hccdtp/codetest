@@ -95,3 +95,25 @@ EOT;
 	return $html;
 }
 ?>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // 送信ボタンのクリックイベントを監視
+    jQuery('input[name="send-to-finish"]').on('click', function(e) {
+        // NGワードリストを定義
+        var ngWords = ['NGWord1', 'NGWord2', 'NGWord3']; // 実際のNGワードをここに追加
+
+        // チェックするフィールドの値を取得
+        var inputContent = jQuery('input[name="element-5"]').val(); // フィールド名で取得
+
+        // NGワードが含まれているかをチェック
+        for (var i = 0; i < ngWords.length; i++) {
+            if (inputContent.includes(ngWords[i])) {
+                alert('NGワードが含まれています。送信できません。');
+                e.preventDefault(); // 送信をブロック
+                return false; // 処理を中断
+            }
+        }
+    });
+});
+</script>
