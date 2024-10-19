@@ -5,7 +5,7 @@
 
 否、できれば使い続けたいので、思い切ってデバッグしてみました。
 
-[発端はこちら。](https://misskey.io/notes/9z5c8vu1awtm0ffd)
+[メモ](https://misskey.io/notes/9z5c8vu1awtm0ffd)
 
 ## 他にも営業メールを弾くためにNGワード機能とか追加。
 - 管理画面でNGワードやアラートメッセージを編集することができない
