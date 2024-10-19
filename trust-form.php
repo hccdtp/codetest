@@ -1828,6 +1828,22 @@ function trust_form_shortcode($atts) {
 	}
 
 	if ( ( isset( $_POST['send-to-confirm'] ) || isset( $_POST['send-to-confirm_x'] ) || ( isset($_POST['mode']) && $_POST['mode'] == 'confirm' ) ) && $trust_form->validate() ) {
+		// NGワードチェックを追加
+		$ng_words = ['NGWord1', 'NGWord2', 'NGWord3']; // NGワードリスト。ここにNGワードを追加
+		foreach ($_POST as $key => $value) {
+			// 文字列でないデータはスキップ
+			if (!is_string($value)) {
+				continue;
+			}
+
+			// NGワードチェック (正確な単語単位で一致する場合のみエラー)
+			foreach ($ng_words as $ng_word) {
+				if (preg_match('/\b' . preg_quote($ng_word, '/') . '\b/', $value)) {
+					echo "送信できません。"; // NGワードがあったときに表示するメッセージ
+					return trust_form_show_input(); // 入力画面に戻す
+				}
+			}
+		}
 		if ( empty($_POST) || !wp_verify_nonce($_POST['trust_form_input_nonce_field'],'trust_form') )
 			return trust_form_show_input();
 		return trust_form_show_confirm();
